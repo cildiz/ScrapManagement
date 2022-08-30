@@ -22,7 +22,7 @@ NTT DATA Business Solutions Turkey firması için geliştirilen web projesidir. 
 
 1. [**MSSQL**](https://www.microsoft.com/tr-tr/sql-server/)'in bilgisayarınızda yüklü olduğundan emin olunuz. Ardından aşağıdaki adımları uygulayınız.
 
-2. **ScrapManagement.Web** içerisinde bulunan **appsettings.json** dosyasındaki **"ApplicationConnection"** ve **"IdentityConnection"** içerisinde bulunan veritabanı bağlantı cümlelerini kendinize uygun şekilde düzenleyeniz.
+2. **ScrapManagement.Web** içerisinde bulunan **appsettings.json** dosyasındaki **"ApplicationConnection"** ve **"IdentityConnection"** içerisinde bulunan veritabanı bağlantı cümlelerini kendi veritabanı bilgilerinize uygun şekilde düzenleyeniz.
 
 3. **Package Manager Console** veya **terminal** üzerinde aşağıdaki komutu çalıştırıp veritabanı ve içeriğinin kurulmasını sağlayınız.
 
