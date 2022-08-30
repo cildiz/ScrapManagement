@@ -1,6 +1,6 @@
 # ScrapManagement
 
-NTT DATA Business Solutions Turkey firması için geliştirilen web projesidir. Proje senaryosuna göre, uygulama NTT DATA'nın hizmet verdiği B/S/H firmasının hurdaya ayrılan ürünlerinin takip ve yönetim sürecini içermektedir.
+NTT DATA Business Solutions Turkey firması için geliştirilen web projesidir. Proje senaryosuna göre uygulama, NTT DATA'nın hizmet verdiği B/S/H firmasının hurdaya ayrılan ürünlerinin takip ve yönetim sürecini içermektedir.
 
 # Kullanılan Teknolojiler
 
