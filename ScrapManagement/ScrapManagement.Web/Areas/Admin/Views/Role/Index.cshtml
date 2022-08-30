@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Roller";
+    ViewData["Caption"] = "Rolleri buradan yönetin";
+}
+<div class="card">
+    <div class="col-sm-12" style="padding:20px">
+        <a onclick="jQueryModalGet('/admin/role/OnGetCreate','Rol Oluştur')" class="btn bg-success">
+            <i class="fa fa-plus-square"></i> Oluştur
+        </a>
+        <a id="reload" class="btn btn-primary text-white">
+            <i class="fa fas fa-bolt"></i>
+            Tekrar Yükle
+        </a>
+    </div>
+    <div id="viewAll" class="card-body table-responsive">
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#roleTable").DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+                }
+            });
+            loadData();
+            $('#reload').on('click', function () {
+                loadData();
+            });
+        });
+        function loadData() {
+            $('#viewAll').load('/admin/role/LoadAll');
+        }
+    </script>
+}

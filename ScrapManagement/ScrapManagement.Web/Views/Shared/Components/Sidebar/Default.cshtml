@@ -1,0 +1,72 @@
+﻿<aside id="sideBar" class="main-sidebar sidebar-ligth-primary">
+    <a href="/" class="brand-link">
+        <img src="~/images/logo-transparent.png" id="brand-logo" alt="logo" class="brand-image"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light" style="font-size:0.8em!important">&nbsp;</span>
+    </a>
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Ana Menü
+                        </p>
+                    </a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-header">Admin</li>
+                    <li is-active-route asp-area="Admin" class="nav-item has-treeview">
+                        <a is-active-route asp-area="Admin" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Admin Ayarları
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a is-active-route asp-area="Admin" asp-controller="User" class="nav-link">
+                                    <i class="far fa-user-circle nav-icon"></i>
+                                    <p>Kullanıcılar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a is-active-route asp-area="Admin" asp-controller="Role" class="nav-link">
+                                    <i class="far fa-user-circle nav-icon"></i>
+                                    <p>Roller</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                <li class="nav-header">Uygulamalar</li>
+                <li is-active-route asp-area="Apps" class="nav-item has-treeview">
+                    <a is-active-route asp-area="Apps" class="nav-link">
+                        <i class="nav-icon fas fa-archive"></i>
+                        <p>
+                            Hurda Takip
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a is-active-route asp-area="Apps" asp-controller="Scrap" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Hurdalar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a is-active-route asp-area="Apps" asp-controller="ScrapType" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Hurda Tipleri</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

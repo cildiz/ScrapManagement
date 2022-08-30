@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Hurda Tipleri";
+    ViewData["Caption"] = "Hurda tiplerini buradan yönetin";
+}
+@using ScrapManagement.Web.Areas.Apps.Models
+@model ScrapTypeViewModel
+<div class="card">
+    <div class="col-sm-12" style="padding:20px">
+        @if ((AuthorizationService.AuthorizeAsync(User, Permissions.ScrapTypes.Create)).Result.Succeeded)
+        {
+            <a onclick="jQueryModalGet('/apps/scrapType/OnGetCreateOrEdit','Hurda Tipi Kaydı Oluştur')" class="btn bg-success">
+                <i class="fa fa-plus-square"></i> Oluştur
+            </a>
+        }
+
+        <a id="reload" class="btn btn-primary text-white">
+            <i class="fa fas fa-bolt"></i>
+            Tekrar Yükle
+        </a>
+    </div>
+    <div id="viewAll" class="card-body table-responsive">
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#brandTable").DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+                }
+            });
+            loadData();
+            $('#reload').on('click', function () {
+                loadData();
+            });
+        });
+        function loadData() {
+            $('#viewAll').load('/apps/scrapType/LoadAll');
+        }
+    </script>
+}

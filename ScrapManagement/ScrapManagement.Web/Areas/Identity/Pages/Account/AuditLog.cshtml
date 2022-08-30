@@ -1,0 +1,97 @@
+﻿@page
+@model ScrapManagement.Web.Areas.Identity.Pages.Account.AuditLogModel
+
+@{
+    ViewData["Title"] = "Loglar";
+    ViewData["Caption"] = "Son 250 logu burada görüntüleyin";
+}
+<div class="card">
+    <div id="viewAll" class="card-body table-responsive">
+        <table class="table table-striped" id="logTable">
+            <thead>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        Tarih
+                    </th>
+                    <th>
+                        İşlem
+                    </th>
+                    <th>
+                        Modül
+                    </th>
+                    <th>
+                       Anahtar
+                    </th>
+                    <th>
+                        Etkilenen Sütunlar
+                    </th>
+                    <th>
+                        Eski Değerler
+                    </th>
+                    <th>
+                        Yeni Değerler
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.AuditLogResponses)
+                {
+                <tr>
+                    <td>
+                        @user.Id
+                    </td>
+                    <td>
+                        <a>
+                            <small class="badge badge-warning"><i class="far fa-clock"></i> Universal</small> @user.DateTime.ToString("dd/MM/yyyy h:mm:ss tt")
+                        </a>
+                        <br>
+                        <small>
+
+                            @{
+                                DateTime runtimeKnowsThisIsUtc = DateTime.SpecifyKind(user.DateTime, DateTimeKind.Utc);
+                                DateTime localVersion = runtimeKnowsThisIsUtc.ToLocalTime();
+                            }
+                            <small class="badge badge-success"><i class="far fa-clock"></i> Local</small> @localVersion.ToString("dd/MM/yyyy h:mm:ss tt")
+                        </small>
+                    </td>
+                    <td>
+                        @user.Type
+                    </td>
+                    <td>
+                        @user.TableName
+                    </td>
+                    <td>
+                        @user.PrimaryKey
+                    </td>
+                    <td>
+                        @user.AffectedColumns
+                    </td>
+                    <td>
+                        @user.OldValues
+                    </td>
+                    <td>
+                        @user.NewValues
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#logTable").DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+                },
+                "order": [[0, "desc"]]
+            });
+        });
+    </script>
+}

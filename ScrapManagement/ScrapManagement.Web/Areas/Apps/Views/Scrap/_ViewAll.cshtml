@@ -1,0 +1,75 @@
+﻿@using ScrapManagement.Web.Areas.Apps.Models
+@model IEnumerable<ScrapViewModel>
+<table id="scrapTable" class="table table-striped" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Hurda Adı</th>
+            <th>Hurda Kodu</th>
+            <th>Açıklama</th>
+            <th>Tarih</th>
+            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Scraps.Delete)).Result.Succeeded
+            || (AuthorizationService.AuthorizeAsync(User, Permissions.Scraps.Edit)).Result.Succeeded)
+            {
+                <th>İşlemler</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var scrap in Model)
+        {
+        <tr>
+            <td>
+                @scrap.Id
+            </td>
+            <td>
+                @scrap.Name
+            </td>
+            <td>
+                @scrap.Code
+            </td>
+            <td>
+                @scrap.Description
+            </td>
+            <td>
+                @scrap.DateTime
+            </td>
+                @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Scraps.Delete)).Result.Succeeded
+       || (AuthorizationService.AuthorizeAsync(User, Permissions.Scraps.Edit)).Result.Succeeded)
+            {
+                <td text-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            İşlem
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+                                @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Scraps.Edit)).Result.Succeeded)
+                            {
+                                    <a onclick="jQueryModalGet('/apps/scrap/OnGetCreateOrEdit?id=@scrap.Id','Hurda Kaydı Düzenle')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Düzenle</a>
+
+                            }
+                                @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Scraps.Delete)).Result.Succeeded)
+
+                            {
+                                    <form id="form_delete_@scrap.Id" asp-area="Apps" asp-controller="Scrap" method="post" asp-action="OnPostDelete" asp-route-id="@scrap.Id" onsubmit="return jQueryModalDelete(this)">
+                                    <a href="javascript:$('#form_delete_@scrap.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Sil</a>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#scrapTable").DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Turkish.json"
+                }
+            });
+    });
+</script>

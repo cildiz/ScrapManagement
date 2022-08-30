@@ -1,0 +1,31 @@
+﻿@page
+@{
+    ViewData["Title"] = "Erişim Reddedildi";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sorry, This Page Can&#39;t Be Accessed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <partial name="_Styles" />
+</head>
+<body class="hold-transition login-page" style="background: white!important;">
+    <div class="login-box" style="width:600px!important;">
+        <div class="login-logo">
+            <b>Erişim Reddedildi!</b>!
+        </div>
+        <!-- /.login-logo -->
+        <p class="login-box-msg">Üzgünüz, bu kaynağa erişiminiz yok.<br />Taramaya devam etmek için lütfen önceki sayfaya dönün.</p>
+        <!-- /.login-card-body -->
+        <div style="text-align:-webkit-center;">
+            <p class="mb-1">
+                <a class="btn btn-danger" href="javascript:history.back()">Geri Dön</a>
+            </p>
+        </div>
+    </div>
+    <partial name="_Scripts" />
+</body>
+</html>
