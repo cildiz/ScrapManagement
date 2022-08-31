@@ -40,5 +40,5 @@ NTT DATA Business Solutions Turkey firması için geliştirilen web projesidir. 
 
       ```bash
       Admin : admin@admin.com / Admin.12345 / Default
-      User  : user@user.com / User.12345 / Default
+      User  : user@user.com / User.12345! / Default
       ```
